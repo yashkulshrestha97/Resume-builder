@@ -1,0 +1,23 @@
+<h1>Add Experience</h1>
+<form action="/api/user/info/experience" method="POST">
+    <div>
+        <label for="org_name">Organisation Name :</label>
+        <input type="text" id="org_name" value="<%= experience.org_name %>" name="org_name" required>
+    </div>
+    
+    <div>
+        <label for="joining_date">Joining Date:</label>
+        <input type="text" id="joining_date" value="<%= experience.joining_date %>" name="joining_date" required>
+    </div>
+    
+    <div>
+        <label for='last_date'>Last Date:</label>
+        <input type="text" id="last_date" value="<%= experience.last_date %>" name="last_date" required>
+    </div>
+    <div>
+        <label for='duration'>Duration:</label>
+        <input type="text" id="duration" value="<%= experience.duration %>" name="duration" required>
+    </div>
+    <button type="submit">Add Experience</button>
+    <a href="/login">Login</a>
+</form>

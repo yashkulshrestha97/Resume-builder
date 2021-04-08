@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Data</title>
+</head>
+<body>
+    <a href="/api/user/logout">Logout</a>
+    <h1>Welcome</h1>
+    <h2></h2>
+    <ol>Name: <%= user.name %></ol>
+    <ol>Email: <%= user.email %></ol>
+
+    <h2>Information</h2>
+    <% if(info) { %>
+        <ol>houseNumber: <%= info.address.houseNumber %></ol>
+        <ol>Street: <%= info.address.street %></ol>
+        <ol>City: <%= info.address.city %></ol>
+        <ol>State: <%= info.address.state %></ol>
+        <ol>Country: <%= info.address.country %></ol>
+        <ol>Mobile Number:<%= info.mobileNumber %></ol>
+        <ol>Age: <%= info.age %></ol>
+        <button onclick="location.href='/api/user/info/update'">Update Information</button>
+    <% } else{ %>
+        <button onclick="location.href='/api/user/info/add'">Add Information</button>
+    <% } %>
+   
+    <h2>Education</h2> 
+    <% if(education.length){ %>
+        <% education.forEach( function(edu) { %>
+            <ol>Institution Name: <%= edu.institution_name %></ol>
+            <ol>Percentage: <%= edu.percentage %></ol>
+            <ol>Degree: <%= edu.degree %></ol>
+            <ol>Year of Passing: <%= edu.yop %></ol>
+        <% }) %>
+        <button onclick="location.href='/api/user/info/education/update'">Update Education</button>
+    <% } else { %>
+        <button onclick="location.href='/api/user/info/education'">Add Education</button>
+    <% } %>
+
+    <h2>Experience</h2> 
+    <% if(experience.length){ %>
+        <% experience.forEach( function(exp) { %>
+            <ol>Organisation Name: <%= exp.org_name %></ol>
+            <ol>Joining Date: <%= exp.joining_date %></ol>
+            <ol>Last Date: <%= exp.last_date %></ol>
+            <ol>Duration: <%= exp.duration %></ol>
+        <% }) %>
+        <button onclick="location.href='/api/user/info/experience/update'">Update Experience</button>
+    <% } else { %>
+        <button onclick="location.href='/api/user/info/experience'">Add Experience</button>
+    <% } %>
+   
+    <h2>Skills</h2> 
+    <% if(skills){ %>
+        <% skills.skills.split(',').forEach( function(skill) { %>
+            <ol><%= skill %></ol>
+        <% }) %>
+        <button onclick="location.href='/api/user/info/skills/update'">Update Skills</button>
+    <% } else { %>
+        <button onclick="location.href='/api/user/info/skills'">Add Skills</button>
+    <% } %>
+
+    <h2>Hobbies</h2>    
+    <% if(skills){ %>
+        <% skills.hobbies.split(',').forEach( function(i) { %>
+            <ol><%= i %></ol>
+        <% }) %>
+        <button onclick="location.href='/api/user/info/skills/update'">Update Hobbies</button>
+    <% } else { %>
+        <button onclick="location.href='/api/user/info/skills'">Add Hobbies</button>
+    <% } %>   
+</body>
+</html>

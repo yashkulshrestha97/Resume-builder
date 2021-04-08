@@ -1,0 +1,24 @@
+<h1>Add Education</h1>
+<form action="/api/user/info/education" method="POST">
+    <div>
+        <label for="institution_name">Institution Name :</label>
+        <input type="text" id="institution_name" value="<%= education.institution_name %>" name="institution_name" required>
+    </div>
+    
+    <div>
+        <label for="percentage">Percentage:</label>
+        <input type="text" id="percentage"  value="<%= education.percentage %>" name="percentage" required>
+    </div>
+    
+    <div>
+        <label for='degree'>Degree:</label>
+        <input type="text" id="degree"  value="<%= education.degree %>" name="degree" required>
+    </div>
+    
+    <div>
+        <label for='yop'>Year of passing:</label>
+        <input type="text" id="yop"  value="<%= education.yop %>" name="yop" required>
+    </div>
+    <button type="submit">Add Education</button>
+    <a href="/login">Login</a>
+</form>

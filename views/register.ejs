@@ -1,0 +1,18 @@
+<h1>Register User</h1>
+<form action="/api/user/register/post" method="POST">
+    <div>
+        <label for="name">User Name:</label>
+        <input name="name" type="text" id="name" required>
+    </div>
+    <div>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+    </div>
+
+    <div>
+        <label for='password'>Password:</label>
+        <input type="password" id="password" name="password" required>
+    </div>
+    <button type="submit">Register</button>
+    <a href="/api/user/login">Login</a>
+</form>

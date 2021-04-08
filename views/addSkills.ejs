@@ -1,0 +1,16 @@
+<h1>Add Skills</h1>
+<form action="/api/user/info/skills" method="POST">
+    <div>
+        <label for="skills">Skills  :</label>
+        <input type="text" id="skills" value="<%= skills.skills %>" name="skills" required>
+    </div>
+    
+    <div>
+        <label for="hobbies">Hobbies:</label>
+        <input type="text" id="hobbies" value="<%= skills.hobbies %>" name="hobbies" required>
+    </div>
+    
+   
+    <button type="submit">Add Skills</button>
+    <a href="/login">Login</a>
+</form>

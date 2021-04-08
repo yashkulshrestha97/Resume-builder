@@ -1,0 +1,65 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<h1>Add Info</h1>
+<form action="/api/user/info" id="info" method="POST">
+
+    <div>
+        <label for="houseNumber">House Number:</label>
+        <input type="text" id="houseNumber" value="<%= info.address.houseNumber %>"  name="houseNumber" required>
+    </div>
+    
+    <div>
+        <label for="street">Street:</label>
+        <input type="text" id="street" value="<%= info.address.street %>" name="street" required>
+    </div>
+    
+    <div>
+        <label for='city'>City:</label>
+        <input type="text" id="city" value="<%= info.address.city %>" name="city" required>
+    </div>
+
+    <div>
+        <label for='state'>State:</label>
+        <input type="text" id="state" value="<%= info.address.state %>" name="state" required>
+    </div>
+
+    <div>
+        <label for='country'>Country:</label>
+        <input type="text" id="country" value="<%= info.address.country %>" name="country" required>
+    </div>
+   
+    <div>
+        <label for='mobileNumber'>Mobile Number:</label>
+        <input type="text" id="mobileNumber" value="<%= info.mobileNumber %>" name="mobileNumber" required>
+    </div>
+
+    <div>
+        <label for='age'>Age:</label>
+        <input type="text" id="age" value="<%= info.age %>" name="age" required>
+    </div>
+
+    <button id="get-button" type="submit">Add Information</button>
+
+    <a href="/login">Login</a>
+  </form>
+
+  <script>
+    $(document).ready(function(){
+       $('#info').on('submit',function(event) {
+           event.preventDefault();
+           const personData = $(this).serialize();
+           console.log(personData);
+           $.ajax({
+                url: '/api/user/info/get',
+                type: 'GET',
+                data: personData,
+                success: function(result, status, xhr){
+                    console.log('successful....');
+                },
+                error: function (xhr, status, error) {
+                    console.log('something went wrong');
+                    console.log(error);
+                }
+           })
+       })
+    })
+</script>
