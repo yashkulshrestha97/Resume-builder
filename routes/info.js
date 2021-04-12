@@ -3,8 +3,6 @@ const router = require('express').Router();
 const infoController = require('../controllers/infoController');
 const verify = require('./verifyToken');
 
-router.get('/info/get',verify,infoController.get_info);
-
 router.get('/info/add', verify, infoController.add_info);
 router.get('/info/update', verify, infoController.edit_info);
 router.post('/info',verify,infoController.post_info);

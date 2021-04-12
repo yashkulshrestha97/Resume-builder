@@ -5,14 +5,33 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Data</title>
+    <style>
+        .updateButton {
+                color: #0099CC; /* Text color */
+                background-color: transparent; /* Remove background color */
+                border: 2px solid #0099CC; /* Border thickness, line style, and color */
+                border-radius: 5px; /* Adds curve to border corners */
+                text-transform: uppercase; /* Make letters uppercase */
+                text-decoration: none;
+        }
+        .logoutButton {
+                color: green; /* Text color */
+                background-color: transparent; /* Remove background color */
+                border: 2px solid green; /* Border thickness, line style, and color */
+                border-radius: 5px; /* Adds curve to border corners */
+                text-transform: uppercase; /* Make letters uppercase */
+                text-decoration: none;
+                float: right;
+        }
+    </style>
 </head>
 <body>
-    <a href="/api/user/logout">Logout</a>
+    <a class="logoutButton" href="/api/user/logout">Logout</a>
     <h1>Welcome</h1>
     <h2></h2>
     <ol>Name: <%= user.name %></ol>
     <ol>Email: <%= user.email %></ol>
-
+    <a class="updateButton" href="/api/user/update">Update User</a>
     <h2>Information</h2>
     <% if(info) { %>
         <ol>houseNumber: <%= info.address.houseNumber %></ol>
@@ -22,9 +41,9 @@
         <ol>Country: <%= info.address.country %></ol>
         <ol>Mobile Number:<%= info.mobileNumber %></ol>
         <ol>Age: <%= info.age %></ol>
-        <button onclick="location.href='/api/user/info/update'">Update Information</button>
+        <button class="updateButton" onclick="location.href='/api/user/info/update'">Update Information</button>
     <% } else{ %>
-        <button onclick="location.href='/api/user/info/add'">Add Information</button>
+        <button class="updateButton" onclick="location.href='/api/user/info/add'">Add Information</button>
     <% } %>
    
     <h2>Education</h2> 
@@ -35,9 +54,9 @@
             <ol>Degree: <%= edu.degree %></ol>
             <ol>Year of Passing: <%= edu.yop %></ol>
         <% }) %>
-        <button onclick="location.href='/api/user/info/education/update'">Update Education</button>
+        <button class="updateButton" onclick="location.href='/api/user/info/education/update'">Update Education</button>
     <% } else { %>
-        <button onclick="location.href='/api/user/info/education'">Add Education</button>
+        <button class="updateButton" onclick="location.href='/api/user/info/education'">Add Education</button>
     <% } %>
 
     <h2>Experience</h2> 
@@ -48,9 +67,9 @@
             <ol>Last Date: <%= exp.last_date %></ol>
             <ol>Duration: <%= exp.duration %></ol>
         <% }) %>
-        <button onclick="location.href='/api/user/info/experience/update'">Update Experience</button>
+        <button class="updateButton" onclick="location.href='/api/user/info/experience/update'">Update Experience</button>
     <% } else { %>
-        <button onclick="location.href='/api/user/info/experience'">Add Experience</button>
+        <button class="updateButton" onclick="location.href='/api/user/info/experience'">Add Experience</button>
     <% } %>
    
     <h2>Skills</h2> 
@@ -58,9 +77,9 @@
         <% skills.skills.split(',').forEach( function(skill) { %>
             <ol><%= skill %></ol>
         <% }) %>
-        <button onclick="location.href='/api/user/info/skills/update'">Update Skills</button>
+        <button class="updateButton" onclick="location.href='/api/user/info/skills/update'">Update Skills</button>
     <% } else { %>
-        <button onclick="location.href='/api/user/info/skills'">Add Skills</button>
+        <button class="updateButton" onclick="location.href='/api/user/info/skills'">Add Skills</button>
     <% } %>
 
     <h2>Hobbies</h2>    
@@ -68,9 +87,10 @@
         <% skills.hobbies.split(',').forEach( function(i) { %>
             <ol><%= i %></ol>
         <% }) %>
-        <button onclick="location.href='/api/user/info/skills/update'">Update Hobbies</button>
+        <button class="updateButton" onclick="location.href='/api/user/info/skills/update'">Update Hobbies</button>
     <% } else { %>
-        <button onclick="location.href='/api/user/info/skills'">Add Hobbies</button>
+        <button class="updateButton" onclick="location.href='/api/user/info/skills'">Add Hobbies</button>
     <% } %>   
+
 </body>
 </html>

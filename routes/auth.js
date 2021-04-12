@@ -10,7 +10,7 @@ router.post('/register/post', authController.register_user);
 router.get('/login',authController.login_form);
 router.post('/login/post', authController.login_user);
 // UPDATE USER
-router.get('/update', verify, authController.update_form)
+router.get('/update',verify,authController.update_form);
 router.put('/update/put', verify, authController.user_update);
 // DELETE USER 
 router.delete('/delete', verify, authController.user_delete);

@@ -9,7 +9,7 @@
                 text-transform: uppercase; /* Make letters uppercase */
                 text-decoration: none;
         }
-    .addskillsButton {
+    .editskillsButton {
                 color: green; /* Text color */
                 background-color: transparent; /* Remove background color */
                 border: 2px solid green; /* Border thickness, line style, and color */
@@ -21,19 +21,16 @@
 <form method="POST">
     <div>
         <label for="skills">Skills  :</label>
-        <input type="text" id="skills" name="skills" required>
+        <input type="text" id="skills" value="<%= skills.skills %>" name="skills" required>
     </div>
     
     <div>
         <label for="hobbies">Hobbies:</label>
-        <input type="text" id="hobbies" name="hobbies" required>
+        <input type="text" id="hobbies" value="<%= skills.hobbies %>" name="hobbies" required>
     </div>
-    
-   
-    <button class="addskillsButton" onclick="addSkills()" type="button">Add Skills</button>
+    <button class="editskillsButton" onclick="addSkills()" type="button">Update Skills</button>
     <a class="dashboardButton" href="/api/user/get-info">Dashboard</a>
 </form>
-
 
 <script>
     function addSkills() {

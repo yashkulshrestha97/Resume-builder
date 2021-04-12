@@ -4,11 +4,6 @@ const Experience = require('../model/Experience');
 const Skills = require('../model/Skills');
 const User = require('../model/User');
 
-// AJAX
-const get_info = (req,res) => {
-    console.log("Success");
-}
-
 const add_info = (req,res) => {
     res.render('addInfo');
 }
@@ -23,22 +18,22 @@ const add_skills = (req,res) => {
 }
 const edit_info = async(req,res) => {
     const info = await Info.findOne({user_id: req.user._id,status:true});
-    res.render('addInfo',{info});
+    res.render('editInfo',{info});
 }
 
 const edit_education = async(req,res) => {
     const education = await Education.findOne({user_id: req.user._id});
-    res.render('addEducation',{education});
+    res.render('editEducation',{education});
 }
 
 const edit_experience = async(req,res) => {
     const experience = await Experience.findOne({user_id: req.user._id});
-    res.render('addExperience',{experience});
+    res.render('editExperience',{experience});
 }
 
 const edit_skills = async(req,res) => {
     const skills = await Skills.findOne({user_id: req.user._id,status:true});
-    res.render('addSkills',{skills});
+    res.render('editSkills',{skills});
 }
 
 const post_info = async(req,res) => {
@@ -62,7 +57,8 @@ const post_info = async(req,res) => {
         console.log(info);
         const newInfo = new Info(info);
         const result = await newInfo.save();
-        res.redirect('/api/user/get-info');
+        // res.redirect('/api/user/get-info');
+        res.json({});
     } catch(e) {
         res.redirect('/api/user/info/add');
     }
@@ -77,7 +73,8 @@ const post_education = async(req,res) => {
         const newEducation = new Education(education);
         const result = await newEducation.save();
         // res.send(result);
-        res.redirect('/api/user/get-info');
+        // res.redirect('/api/user/get-info');
+        res.json({});
     } catch(e) {
         // res.send(e);
         console.log(e);
@@ -94,7 +91,8 @@ const post_experience = async(req,res) => {
         const newExp = new Experience(exp);
         const result = await newExp.save();
         // res.send(result);
-        res.redirect('/api/user/get-info');
+        // res.redirect('/api/user/get-info');
+        res.send({});
     } catch(e) {
         res.send(e);
     }
@@ -115,7 +113,8 @@ const post_skills = async(req,res) => {
         const newSkills = new Skills(skills);
         const result = await newSkills.save();
         // res.send(result);
-        res.redirect('/api/user/get-info');
+        // res.redirect('/api/user/get-info');
+        res.send({});
     } catch(e) {
         res.send(e);
     }
@@ -154,5 +153,4 @@ module.exports = {
     edit_education,
     edit_experience,
     edit_skills,
-    get_info
 }

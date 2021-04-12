@@ -44,10 +44,11 @@ const register_user = async(req,res) => {
         email: req.body.email,
         password: hashedPassword
     });
+    
     try{
-       const savedUser = await user.save();
+    const savedUser = await user.save();
     //    res.send(savedUser);
-    res.redirect('/api/user/login');
+    res.json({});
     }catch(e){
        res.status(400).send(e);
     }
@@ -80,7 +81,8 @@ const login_user = async(req,res) => {
        // CREATE AND ASSIGN A TOKEN
        const token = jwt.sign({_id: user._id,email: user.email,name: user.name}, process.env.TOKEN_SECRET);
        req.session.token = token;
-       res.redirect('/api/user/get-info');
+    //    res.redirect('/api/user/get-info');
+    res.json({});
 }
 
 // POST USER

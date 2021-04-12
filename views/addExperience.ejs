@@ -1,23 +1,67 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <h1>Add Experience</h1>
-<form action="/api/user/info/experience" method="POST">
+<style>
+     .dashboardButton {
+                color: #0099CC; /* Text color */
+                background-color: transparent; /* Remove background color */
+                border: 2px solid #0099CC; /* Border thickness, line style, and color */
+                border-radius: 5px; /* Adds curve to border corners */
+                text-transform: uppercase; /* Make letters uppercase */
+                text-decoration: none;
+        }
+    .addexperienceButton {
+                color: green; /* Text color */
+                background-color: transparent; /* Remove background color */
+                border: 2px solid green; /* Border thickness, line style, and color */
+                border-radius: 5px; /* Adds curve to border corners */
+                text-transform: uppercase; /* Make letters uppercase */
+                text-decoration: none;
+        }
+</style>
+<form method="POST">
     <div>
         <label for="org_name">Organisation Name :</label>
-        <input type="text" id="org_name" value="<%= experience.org_name %>" name="org_name" required>
+        <input type="text" id="org_name"  name="org_name" required>
     </div>
     
     <div>
         <label for="joining_date">Joining Date:</label>
-        <input type="text" id="joining_date" value="<%= experience.joining_date %>" name="joining_date" required>
+        <input type="text" id="joining_date" name="joining_date" required>
     </div>
     
     <div>
         <label for='last_date'>Last Date:</label>
-        <input type="text" id="last_date" value="<%= experience.last_date %>" name="last_date" required>
+        <input type="text" id="last_date" name="last_date" required>
     </div>
     <div>
         <label for='duration'>Duration:</label>
-        <input type="text" id="duration" value="<%= experience.duration %>" name="duration" required>
+        <input type="text" id="duration" name="duration" required>
     </div>
-    <button type="submit">Add Experience</button>
-    <a href="/login">Login</a>
+    <button class="addexperienceButton" onclick="addExperience()" type="button">Add Experience</button>
+    <a class="dashboardButton" href="/api/user/get-info">Dashboard</a>
 </form>
+
+
+<script>
+    function addExperience() {
+        console.log('button clicked');
+        var formData = {
+            org_name: $("#org_name").val(),
+            joining_date: $("#joining_date").val(),
+            last_date: $("#last_date").val(),
+            duration: $("#duration").val(),
+        }
+            $.ajax({
+            type: "POST",
+            url: "/api/user/info/experience",
+            data: formData,
+            dataType: "json",
+            success: function(data, textStatus) {
+                window.location.href= '/api/user/get-info';
+            },
+            encode: true,
+            })
+    }
+</script>
+
+

@@ -1,4 +1,24 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <h1>Update User</h1>
+<style>
+    .updateButton {
+ color: green; /* Text color */
+ background-color: transparent; /* Remove background color */
+ border: 2px solid green; /* Border thickness, line style, and color */
+ border-radius: 5px; /* Adds curve to border corners */
+ text-transform: uppercase; /* Make letters uppercase */
+ margin-top: 5px;
+}
+.dashboardButton {
+ color: #0099CC; /* Text color */
+ background-color: transparent; /* Remove background color */
+ border: 2px solid #0099CC; /* Border thickness, line style, and color */
+ border-radius: 5px; /* Adds curve to border corners */
+ text-transform: uppercase; /* Make letters uppercase */
+ text-decoration: none;
+ margin-top: 5px;
+}
+</style>
 <form action="/api/user/update/put" method="POST">
     <div>
         <label for="name">User Name:</label>
@@ -13,6 +33,28 @@
         <label for='password'>Password:</label>
         <input type="password" id="password" name="password" required>
     </div>
-    <button type="submit">Submit</button>
-    <a href="/login">Login</a>
+    <button class="updateButton" onclick="updateUser()" type="button">Submit</button>
+    <a class="dashboardButton" href="/api/user/get-info">Dashboard</a>
 </form>
+
+
+<script>
+    function updateUser() {
+        console.log('button clicked');
+        var formData = {
+            name: $("#name").val(),
+            email: $("#email").val(),
+            password: $("#password").val(),
+        }
+            $.ajax({
+            type: "PUT",
+            url: "/api/user/update/put",
+            data: formData,
+            dataType: "json",
+            success: function(data, textStatus) {
+                window.location.href= '/api/user/login';
+            },
+            encode: true,
+            })
+    }
+</script>
