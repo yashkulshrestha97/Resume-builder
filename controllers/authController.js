@@ -144,6 +144,15 @@ const user_logout = async (req,res) => {
     }
 }
 
+// ABOUT US
+const about_page = (req,res) => {
+    res.render('about');
+}
+
+const index_page = (req,res) => {
+    res.render('index');
+}
+
 module.exports = {
     register_user,
     login_user,
@@ -153,5 +162,7 @@ module.exports = {
     register_form,
     login_form,
     update_form,
-    user_logout
+    user_logout,
+    about_page,
+    index_page
 }

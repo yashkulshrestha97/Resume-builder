@@ -3,6 +3,7 @@ const Education = require('../model/Education');
 const Experience = require('../model/Experience');
 const Skills = require('../model/Skills');
 const User = require('../model/User');
+const { exists } = require('../model/Info');
 
 const add_info = (req,res) => {
     res.render('addInfo');
@@ -14,7 +15,7 @@ const add_experience = (req,res) => {
     res.render('addExperience');
 }
 const add_skills = (req,res) => {
-    res.render('addSkills');
+    res.render('addSkills', {type:req.params.type});
 }
 const edit_info = async(req,res) => {
     const info = await Info.findOne({user_id: req.user._id,status:true});
@@ -22,18 +23,18 @@ const edit_info = async(req,res) => {
 }
 
 const edit_education = async(req,res) => {
-    const education = await Education.findOne({user_id: req.user._id});
+    const education = await Education.findOne({user_id: req.user._id,_id:req.params.edu_id});
     res.render('editEducation',{education});
 }
 
 const edit_experience = async(req,res) => {
-    const experience = await Experience.findOne({user_id: req.user._id});
+    const experience = await Experience.findOne({user_id: req.user._id,_id:req.params.exp_id});
     res.render('editExperience',{experience});
 }
 
 const edit_skills = async(req,res) => {
     const skills = await Skills.findOne({user_id: req.user._id,status:true});
-    res.render('editSkills',{skills});
+    res.render('editSkills',{skills,type:req.params.type});
 }
 
 const post_info = async(req,res) => {
@@ -82,6 +83,25 @@ const post_education = async(req,res) => {
     }
 }
 
+const update_education = async(req,res) => {
+    try{
+        const result = await Education.findOneAndUpdate({_id: req.params.edu_id}, req.body);
+        res.send(result);
+    }catch(e){
+        console.log(e);
+    }
+}
+
+const delete_education = async(req,res) => {
+    const id = req.params.edu_id;
+    try {
+        const result = await Education.findByIdAndDelete(id);
+        res.send(result);
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 const post_experience = async(req,res) => {
     try {
         // console.log(req.user._id);
@@ -98,20 +118,47 @@ const post_experience = async(req,res) => {
     }
 }
 
+const update_experience = async(req,res) => {
+    try{
+        console.log(req.body);
+        const result = await Experience.findOneAndUpdate({_id: req.params.exp_id}, req.body);
+        res.send(result);
+    } catch(e){
+        console.log(e);
+    }
+}
+
+const delete_experience = async(req,res) => {
+    try {
+        const id = req.params.exp_id;
+        try {
+            const result = await Experience.findByIdAndDelete(id);
+            res.send(result);
+        } catch (error) {
+            console.log(error);
+        }
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 const post_skills = async(req,res) => {
     try {
+        console.log(req.body);
         const check = await Skills.findOne({user_id: req.user._id, status: true});
         
         if(check){
-            await Skills.findByIdAndUpdate({_id:check._id},{status: false});
-        }
-        // console.log(req.user._id);
+            await Skills.findByIdAndUpdate({_id:check._id},{...req.body});
+        }else{
+             // console.log(req.user._id);
         var skills = req.body;
         skills.user_id = req.user._id;
         skills.status = true;
         console.log(skills);
         const newSkills = new Skills(skills);
         const result = await newSkills.save();
+        }
+        // console.log(req.user._id);
         // res.send(result);
         // res.redirect('/api/user/get-info');
         res.send({});
@@ -132,6 +179,10 @@ const get_details = async(req,res) => {
         // console.log(experience);
         // console.log(url.parse(req.url, true).query);
         // console.log(education);
+        // res.json(skills);
+
+        console.log(skills);
+        // res.json(skills);
         res.render('show',{user,info,education,experience,skills});
     } catch (error) {
         res.send(error);
@@ -153,4 +204,8 @@ module.exports = {
     edit_education,
     edit_experience,
     edit_skills,
+    update_education,
+    delete_education,
+    update_experience,
+    delete_experience
 }

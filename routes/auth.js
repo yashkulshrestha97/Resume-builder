@@ -9,6 +9,10 @@ router.post('/register/post', authController.register_user);
 // LOGIN USER
 router.get('/login',authController.login_form);
 router.post('/login/post', authController.login_user);
+// ABOUT US
+router.get('/aboutus',authController.about_page);
+// ABOUT US
+router.get('/index',authController.index_page);
 // UPDATE USER
 router.get('/update',verify,authController.update_form);
 router.put('/update/put', verify, authController.user_update);
